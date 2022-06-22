@@ -1,1 +1,11 @@
-<p>layout works!</p>
+<div class="row">
+  <div class="col-12 col-lg-4">
+    <ng-select [(ngModel)]="selectedOption">
+      <ng-option *ngFor="let option of options" [value]="option.id">{{option.name}}</ng-option>
+    </ng-select>
+  </div>
+</div>
+
+<hr/>
+
+<p>Selected option: {{selectedOption}}</p>
