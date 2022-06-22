@@ -1,8 +1,17 @@
 <div class="row">
-  <div class="col-12 col-lg-4">
-    <ng-select [(ngModel)]="selectedOption">
+  <div class="col-12 col-lg-6">
+    <ng-select [(ngModel)]="selectedCategory" (change)="onChangeCategory($event)">
+      <ng-container *ngFor="let category of categories">
+        <ng-option [value]="category.id">
+          {{category.name}}
+        </ng-option>
+      </ng-container>
+    </ng-select>
+  </div>
+  <div class="col-12 col-lg-6">
+    <ng-select [(ngModel)]="selectedOption" (change)="onChangeOption($event)">
       <ng-container *ngFor="let option of options">
-        <ng-option *ngIf="option.category == 1" [value]="option.id">
+        <ng-option *ngIf="option.category == selectedCategory" [value]="option.id">
           {{option.name}}
         </ng-option>
       </ng-container>
@@ -10,6 +19,14 @@
   </div>
 </div>
 
-<hr/>
+<div class="row">
+  <div class="col-12 col-lg-6">
+    <p>Selected category {{selectedCategory}}</p>
+  </div>
+  <div class="col-12 col-lg-6">
+    <p>Selected option: {{selectedOption}}</p>
+  </div>
+</div>
 
-<p>Selected option: {{selectedOption}}</p>
+
+

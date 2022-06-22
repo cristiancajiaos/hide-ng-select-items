@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-
+  selectedCategory: any;
   selectedOption: any;
+
+  categories = [
+    { id: 1, name: 'Category 1', description: 'Category 1 Description' },
+    { id: 2, name: 'Category 2', description: 'Category 2 Description' },
+    { id: 3, name: 'Category 3', description: 'Category 3 Description' },
+  ];
 
   options = [
     { id: 0, name: 'Foo', category: 1, description: 'Foo description' },
@@ -21,6 +27,15 @@ export class LayoutComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.selectedCategory = this.categories[0].id;
     this.selectedOption = this.options[0].id;
+  }
+
+  public onChangeCategory(event: Event): void {
+    this.selectedOption = this.options.filter(option => option.category == this.selectedCategory)[0].id;
+  }
+
+  public onChangeOption(event: Event): void {
+    console.log(event);
   }
 }
